@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% autoescape false %}
+<html>
+<head>
+    <title>XSS Example</title>
+</head>
+<body>
+    <h1>Enter Youre Name</h1>
+
+    <form method="GET" action="/xss">
+      <input type="text" name="input" placeholder="Enter your name" required>
+      <button type="submit">Submit</button>
+    </form>
+    <p>Youre Name is: {{ input }}</p>
+</body>
+{% endautoescape %}
+</html>

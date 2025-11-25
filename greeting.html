@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Greeting</title>
+    <style>
+      body{display:flex;align-items:center;justify-content:center;min-height:100vh;font-family:Segoe UI, Tahoma, Geneva, Verdana, sans-serif;background:#f3f6ff}
+      .box{background:#fff;padding:24px;border-radius:10px;box-shadow:0 8px 20px rgba(0,0,0,0.08);width:90%;max-width:520px;text-align:center}
+      input{padding:8px 12px;width:70%;border:1px solid #cfd8ff;border-radius:6px}
+      button{padding:8px 14px;border-radius:6px;border:none;background:#5563DE;color:#fff;margin-left:8px}
+      .message{margin-top:18px;text-align:left}
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <h2>Greeting Page</h2>
+      <p>Enter your name and press Greet.</p>
+
+      <form method="GET">
+        <input name="name" placeholder="Your name here" autocomplete="off">
+        <button type="submit">Greet</button>
+      </form>
+
+      <div id="message" class="message"></div>
+    </div>
+
+    <script>
+      // Intentionally no input filtering — displays raw user input (for XSS lab)
+      const params = new URLSearchParams(location.search);
+      const name = params.get('name');
+      if (name !== null && name !== "") {
+        // inserting user-controlled value directly into innerHTML (unsanitized)
+        document.getElementById('message').innerHTML = `
+          <h3>Hello ${name}!</h3>
+          <p>Wishing you great success in all your endeavours.</p>
+          <p>May you be blessed with good health and abundant wealth.</p>
+        `;
+      }
+      
+    </script>
+  </body>
+</html>
